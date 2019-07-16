@@ -29,6 +29,7 @@ Plug 'diepm/vim-rest-console', { 'for': 'rest' }
 Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
 " dev specific
+Plug 'sbdchd/neoformat'
 Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'othree/html5.vim', { 'for': ['html', 'eruby', 'vue'] }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'css', 'eruby', 'vue', 'scss'] }
@@ -40,15 +41,18 @@ Plug 'eraserhd/parinfer-rust'
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'junegunn/rainbow_parentheses.vim'
+Plug 'Vimjas/vim-python-pep8-indent', { 'for': 'python' }
 Plug 'posva/vim-vue', { 'for': 'vue' }
 Plug 'vim-scripts/nginx.vim'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'solarnz/thrift.vim', { 'for': 'thrift' }
+Plug 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
 
 " Plug 'tpope/vim-rails'
 " Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
 " Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
-" Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+Plug 'jrozner/vim-antlr'
 " Plug 'tikhomirov/vim-glsl', { 'for': 'glsl' }
 call plug#end()
 "}}}
@@ -94,6 +98,7 @@ let g:ale_sign_column_always = 1
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = 'Δ'
 let g:ale_echo_msg_format = '|%linter%| %s'
+let g:ale_go_govet_options = '-composites=false'
 hi link ALEErrorSign GruvboxRedSign
 hi link ALEWarningSign GruvboxYellowSign
 "}}}
@@ -170,7 +175,8 @@ au vimrc BufWritePost $MYVIMRC source <afile> | AirlineRefresh
 "---------------------------------------
 set expandtab
 set ts=2 sw=2 sts=2
-au vimrc FileType c setlocal ts=4 sw=4 sts=4
+au vimrc FileType c,cpp setlocal ts=4 sw=4 sts=4
+set cino=g0N-s
 "}}}
 
 "-------terminal escape {{{
@@ -185,6 +191,7 @@ au vimrc FileType python set omnifunc=python3complete#Complete
 
 "-------general {{{
 "---------------------------------------
+nnoremap <Leader>c :Commands<CR>
 syntax on
 set nohlsearch
 set hidden                          " switch with buffer unsaved
